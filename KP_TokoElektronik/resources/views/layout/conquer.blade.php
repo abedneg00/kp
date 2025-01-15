@@ -481,45 +481,11 @@ License: You must have a valid license purchased only from themeforest(the above
 						</div>
 					</form>
 				</li>
-				<li class="active">
-					<a href="{{ route('welcome') }}">
-					<i class="icon-speedometer"></i>
-					<span class="title">Dashboard</span>
-					<span class="selected"></span>
-					</a>
-				</li>
+
 				<li>
-					<a href="{{ route('hotel.index') }}">
-					<i class="icon-home"></i>
-					<span class="title">Hotel</span>
-					<span class="selected"></span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ route('product.index') }}">
+					<a href="product">
 					<i class="icon-star"></i>
-					<span class="title">Product</span>
-					<span class="selected"></span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ route('type.index') }}">
-					<i class="icon-star"></i>
-					<span class="title">Type</span>
-					<span class="selected"></span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ route('customer.index') }}">
-					<i class="icon-star"></i>
-					<span class="title">Customer</span>
-					<span class="selected"></span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ route('transaction.index') }}">
-					<i class="icon-star"></i>
-					<span class="title">Transaction</span>
+					<span class="title">Manajemen Produk</span>
 					<span class="selected"></span>
 					</a>
 				</li>
