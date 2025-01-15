@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RestockController;
 use App\Models\Products;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('product', ProductController::class);
 Route::resource('transaction', PenjualanController::class);
+Route::resource('restock', RestockController::class);
 
 Route::get('/', function () {
     return view('layout.conquer');
@@ -32,8 +34,9 @@ Route::get('/api/products/{id}', function ($id) {
 Route::get('/laporan', [PenjualanController::class, 'report'])->name('laporan.index');
 
 
-Route::put('/transaction/sales/{id}', [PenjualanController::class, 'updateSales'])
-    ->name('transaction.updateSales');
-Route::put('/transaction/restock/{id}', [PenjualanController::class, 'updateRestock'])
-    ->name('transaction.updateRestock');
-Route::put('/transaction/stock/{id}', [PenjualanController::class, 'updateStock'])->name('transaction.updateStock');
+// Route::put('/transaction/sales/{id}', [PenjualanController::class, 'updateSales'])
+//     ->name('transaction.updateSales');
+// Route::put('/transaction/restock/{id}', [PenjualanController::class, 'updateRestock'])
+//     ->name('transaction.updateRestock');
+// Route::put('/transaction/stock/{id}', [PenjualanController::class, 'updateStock'])->name('transaction.updateStock');
+Route::delete('restock/{id}', [RestockController::class, 'destroy'])->name('restock.destroy');  
