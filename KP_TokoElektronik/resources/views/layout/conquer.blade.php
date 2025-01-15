@@ -490,6 +490,22 @@ License: You must have a valid license purchased only from themeforest(the above
 					</a>
 				</li>
 
+				<li>
+					<a href="transaction">
+					<i class="icon-star"></i>
+					<span class="title">Pencatatan Transaksi Penjualan</span>
+					<span class="selected"></span>
+					</a>
+				</li>
+
+				<li>
+					<a href="laporan">
+					<i class="icon-star"></i>
+					<span class="title">Laporan Penjualan</span>
+					<span class="selected"></span>
+					</a>
+				</li>
+
 			</ul>
 			<!-- END SIDEBAR MENU -->
 		</div>
