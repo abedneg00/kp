@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use App\Models\Products;
+use App\Models\Transactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; // Pastikan ini ditambahkan di bagian atas  
 
@@ -29,6 +30,19 @@ class ProductController extends Controller
         }
         return view('product.index', ['datas' => $rs]);
     }
+
+    public function home()
+    {
+        $products = Products::all();
+        $totalSales = Transactions::sum('total_price');
+        $totalProductsSold = Transactions::sum('quantity_sold');
+
+        // Debugging  
+        // dd($products, $totalSales, $totalProductsSold);
+
+        return view('welcome', compact('products', 'totalSales', 'totalProductsSold'));
+    }
+
 
     public function simpanPhoto(Request $request)
     {

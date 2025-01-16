@@ -4,7 +4,9 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RestockController;
 use App\Models\Products;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,27 +18,23 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::resource('product', ProductController::class);
-Route::resource('transaction', PenjualanController::class);
-Route::resource('restock', RestockController::class);
+Route::middleware(["auth"])->group(function () {
+    Route::resource('product', ProductController::class);
+    Route::resource('transaction', PenjualanController::class);
+    Route::resource('restock', RestockController::class);
 
-Route::get('/', function () {
-    return view('layout.conquer');
+    Route::get('/', [ProductController::class, 'home'])->name('home');
+
+
+    Route::get('/api/products/{id}', function ($id) {
+        return response()->json(Products::find($id));
+    });
+
+    Route::get('/laporan', [PenjualanController::class, 'report'])->name('laporan.index');
+
+    Route::delete('restock/{id}', [RestockController::class, 'destroy'])->name('restock.destroy');
 });
 
-Route::get('/api/products/{id}', function ($id) {
-    return response()->json(Products::find($id));
-});
+Auth::routes();
 
-// Route::get('/laporan', [PenjualanController::class, 'laporan'])->name('laporan.index');  
-// Route::get('/laporan/filter', [PenjualanController::class, 'filter'])->name('laporan.filter');  
-
-Route::get('/laporan', [PenjualanController::class, 'report'])->name('laporan.index');
-
-
-// Route::put('/transaction/sales/{id}', [PenjualanController::class, 'updateSales'])
-//     ->name('transaction.updateSales');
-// Route::put('/transaction/restock/{id}', [PenjualanController::class, 'updateRestock'])
-//     ->name('transaction.updateRestock');
-// Route::put('/transaction/stock/{id}', [PenjualanController::class, 'updateStock'])->name('transaction.updateStock');
-Route::delete('restock/{id}', [RestockController::class, 'destroy'])->name('restock.destroy');  
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

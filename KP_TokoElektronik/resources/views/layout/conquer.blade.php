@@ -121,6 +121,15 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
 
+                    <li>
+                        <form action="{{ route('logout') }}" method="post">
+
+                            @csrf <input type="submit" value="Logout" class="btn btn-danger btn-sm" />
+
+                            </form>
+                    </li>
+
+
                 </ul>
                 <!-- END SIDEBAR MENU -->
             </div>
