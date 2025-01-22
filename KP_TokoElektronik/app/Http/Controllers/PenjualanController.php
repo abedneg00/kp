@@ -8,6 +8,7 @@ use App\Models\Users;
 use App\Models\ProductRestock; // Tambahkan model ProductRestock  
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;  
 
 class PenjualanController extends Controller
 {
@@ -59,12 +60,15 @@ class PenjualanController extends Controller
         $data->quantity_sold = $request->get('quantity_sold');
         $data->payment_method = $request->get('payment_method');
         $data->total_price = $request->get('total_price');
-        $data->users_id = $request->get('users_id');
+
+        // Save the currently logged-in user's ID  
+        $data->users_id = Auth::id(); // Get the ID of the authenticated user  
 
         $data->save();
 
-        return redirect()->route("transaction.index")->with('status', "Selamat!! data transaksi anda telah tersimpan ke database!");
+        return redirect()->route("transaction.index")->with('status', "Transaksi berhasil disimpan!");
     }
+
 
     /**  
      * Display the specified resource.  
@@ -174,18 +178,18 @@ class PenjualanController extends Controller
         ));
     }
 
-    public function printNota($id)  
-    {  
+    public function printNota($id)
+    {
         // Fetch the transaction data  
         $transaction = Transactions::with('product', 'user')->findOrFail($id); // Eager load the product relationship  
-   
+
         // Create a PDF instance and load the view  
         $pdf = PDF::loadView('pdf.nota', compact('transaction')); // Pass the transaction variable  
-   
+
         // Return the PDF as a download  
-        return $pdf->download('nota_' . $transaction->no_penjualan . '.pdf');  
-    }  
- 
+        return $pdf->download('nota_' . $transaction->no_penjualan . '.pdf');
+    }
+
 
 
 

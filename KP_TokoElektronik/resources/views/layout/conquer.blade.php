@@ -106,7 +106,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li>  
                         <a href="transaction">  
                             <i class="icon-star"></i>  
-                            <span class="title">Pencatatan Transaksi Penjualan</span>  
+                            <span class="title">Transaksi Penjualan</span>  
                             <span class="selected"></span>  
                         </a>  
                     </li>  

@@ -54,15 +54,12 @@
                 <input type="text" class="form-control" id="total_price" name="total_price" readonly>
             </div>
             <br>
+            
             <div class="mb-3">
-                <label for="users_id" class="form-label">Pilih Admin</label>
-                <select class="form-select" id="users_id" name="users_id" required>
-                    <option value="">Pilih Admin</option>
-                    @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endforeach
-                </select>
+                <label for="users_id" class="form-label">Kasir Admin</label>
+                <p class="form-control-plaintext">{{ Auth::user()->name }}</p>
             </div>
+
             <br>
             <button type="submit" class="btn btn-primary">Simpan Transaksi</button>
             <a href="{{ route('transaction.index') }}" class="btn btn-secondary">Kembali</a>
