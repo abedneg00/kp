@@ -71,66 +71,64 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <!-- BEGIN SIDEBAR MENU -->
                 <!-- DOC: for circle icon style menu apply page-sidebar-menu-circle-icons class right after sidebar-toggler-wrapper -->
-                <ul class="page-sidebar-menu">
-                    <li class="sidebar-toggler-wrapper">
-                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                        <div class="sidebar-toggler">
-                        </div>
-                        <div class="clearfix">
-                        </div>
-                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                    </li>
-                    <li class="sidebar-search-wrapper">
-                        <form class="search-form" role="form" action="index.html" method="get">
-                            <div class="input-icon right">
-                                <i class="icon-magnifier"></i>
-                                <input type="text" class="form-control" name="query" placeholder="Search...">
-                            </div>
-                        </form>
-                    </li>
-
-                    <li>
-                        <a href="product">
-                            <i class="icon-star"></i>
-                            <span class="title">Manajemen Produk</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="restock">
-                            <i class="icon-star"></i>
-                            <span class="title">Restock Produk</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="transaction">
-                            <i class="icon-star"></i>
-                            <span class="title">Pencatatan Transaksi Penjualan</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="laporan">
-                            <i class="icon-star"></i>
-                            <span class="title">Laporan Penjualan</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <form action="{{ route('logout') }}" method="post">
-
-                            @csrf <input type="submit" value="Logout" class="btn btn-danger btn-sm" />
-
-                            </form>
-                    </li>
-
-
-                </ul>
+                <ul class="page-sidebar-menu">  
+                    <li class="sidebar-toggler-wrapper">  
+                        <div class="sidebar-toggler"></div>  
+                        <div class="clearfix"></div>  
+                    </li>  
+                    <li class="sidebar-search-wrapper">  
+                        <form class="search-form" role="form" action="index.html" method="get">  
+                            <div class="input-icon right">  
+                                <i class="icon-magnifier"></i>  
+                                <input type="text" class="form-control" name="query" placeholder="Search...">  
+                            </div>  
+                        </form>  
+                    </li>  
+                  
+                    @if(auth()->user()->role === 'admin')  
+                        <li>  
+                            <a href="product">  
+                                <i class="icon-star"></i>  
+                                <span class="title">Manajemen Produk</span>  
+                                <span class="selected"></span>  
+                            </a>  
+                        </li>  
+                  
+                        <li>  
+                            <a href="restock">  
+                                <i class="icon-star"></i>  
+                                <span class="title">Restock Produk</span>  
+                                <span class="selected"></span>  
+                            </a>  
+                        </li>  
+                    @endif  
+                  
+                    <li>  
+                        <a href="transaction">  
+                            <i class="icon-star"></i>  
+                            <span class="title">Pencatatan Transaksi Penjualan</span>  
+                            <span class="selected"></span>  
+                        </a>  
+                    </li>  
+                  
+                    @if(auth()->user()->role === 'admin')  
+                        <li>  
+                            <a href="laporan">  
+                                <i class="icon-star"></i>  
+                                <span class="title">Laporan Penjualan</span>  
+                                <span class="selected"></span>  
+                            </a>  
+                        </li>  
+                    @endif  
+                  
+                    <li>  
+                        <form action="{{ route('logout') }}" method="post">  
+                            @csrf  
+                            <input type="submit" value="Logout" class="btn btn-danger btn-sm" />  
+                        </form>  
+                    </li>  
+                </ul>  
+                
                 <!-- END SIDEBAR MENU -->
             </div>
         </div>

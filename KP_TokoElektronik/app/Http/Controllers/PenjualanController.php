@@ -13,6 +13,7 @@ class PenjualanController extends Controller
     /**  
      * Display a listing of the resource.  
      */
+    
     public function index()
     {
         $querybuilder = Transactions::all(); // Mengambil semua transaksi  

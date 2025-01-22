@@ -59,8 +59,6 @@ class ProductController extends Controller
         File::delete(public_path($request->filepath));
         return redirect()->route('product.index')->with('status', 'Photo dihapus');
     }
-
-
     /**
      * Show the form for creating a new resource.
      */

@@ -23,6 +23,9 @@ Route::middleware(["auth"])->group(function () {
     Route::resource('transaction', PenjualanController::class);
     Route::resource('restock', RestockController::class);
 
+    Route::get('/transaction', [PenjualanController::class, 'index'])->name('transaction.index');  
+
+
     Route::get('/', [ProductController::class, 'home'])->name('home');
 
 
