@@ -7,19 +7,31 @@ use App\Models\Transactions;
 use App\Models\Users;
 use App\Models\ProductRestock; // Tambahkan model ProductRestock  
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PenjualanController extends Controller
 {
     /**  
      * Display a listing of the resource.  
      */
-    
+
     public function index()
     {
-        $querybuilder = Transactions::all(); // Mengambil semua transaksi  
-        return view('transaction.index', ['data' => $querybuilder]);
-    }
+        try {
+            // Eager load the product relationship  
+            $transactions = Transactions::with('product')->get();
 
+            // Check if transactions are empty  
+            if ($transactions->isEmpty()) {
+                return view('transaction.index', ['data' => [], 'message' => 'No transactions found.']);
+            }
+
+            return view('transaction.index', ['data' => $transactions]);
+        } catch (\Exception $e) {
+            // Handle any exceptions that may occur  
+            return redirect()->route('transaction.index')->with('status', 'Error fetching transactions: ' . $e->getMessage());
+        }
+    }
     /**  
      * Show the form for creating a new resource.  
      */
@@ -161,6 +173,20 @@ class PenjualanController extends Controller
             'payment_method'
         ));
     }
-    
+
+    public function printNota($id)  
+    {  
+        // Fetch the transaction data  
+        $transaction = Transactions::with('product', 'user')->findOrFail($id); // Eager load the product relationship  
+   
+        // Create a PDF instance and load the view  
+        $pdf = PDF::loadView('pdf.nota', compact('transaction')); // Pass the transaction variable  
+   
+        // Return the PDF as a download  
+        return $pdf->download('nota_' . $transaction->no_penjualan . '.pdf');  
+    }  
+ 
+
+
 
 }
