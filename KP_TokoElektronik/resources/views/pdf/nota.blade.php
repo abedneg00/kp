@@ -36,6 +36,8 @@
   
     <div class="header">  
         <h1>Nota Transaksi</h1>  
+        <p>TOKO AMIN ELEKTRONIK</p>
+        <p>Jl. Ketapang - Sukadana RT.016/RW.008</p>
         <p>ID Transaksi: {{ $transaction->id }}</p>  
         <p>Tanggal: {{ \Carbon\Carbon::parse($transaction->transaction_date)->format('d-m-Y H:i') }}</p>  
         <p>Nama User: {{ optional($transaction->user)->name }}</p> <!-- Display user name -->  

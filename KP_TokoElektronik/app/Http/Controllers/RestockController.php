@@ -34,12 +34,11 @@ class RestockController extends Controller
     public function store(Request $request)
     {
         $data = new ProductRestock();
-        $data->quantity = $request->get('restock_guantity');
+        $data->quantity = $request->get('restock_quantity');
         $data->products_id = $request->get('restock_products_id');
-
-        $data->save();
         // dd($data);
-
+        $data->save();
+        
         return redirect()->route("restock.index")->with('status', "Produk berhasil di restock!!");
     }
 
